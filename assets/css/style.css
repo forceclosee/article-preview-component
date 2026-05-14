@@ -1,0 +1,226 @@
+/* BASE */
+/* variables */
+:root {
+  --very-dark-grayish-blue: hsl(217, 19%, 35%);
+  --desaturated-dark-blue: hsl(214, 17%, 51%);
+  --grayish-blue: hsl(212, 23%, 69%);
+  --light-grayish-blue: hsl(210, 46%, 95%);
+  --link-attribution: hsl(228, 45%, 44%);
+  --white: hsl(0, 0%, 100%);
+}
+
+/* Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+*:not(dialog) {
+  margin: 0;
+}
+
+/* Increase line-height */
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+/* Reserve scrollbar area */
+html {
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    /* Enable smooth scrolling for anchor links */
+    scroll-behavior: smooth;
+    /* Enable keywords animations */
+    interpolate-size: allow-keywords;
+  }
+}
+
+body {
+  /* Set default font */
+  font:
+    500 0.8275rem "Manrope",
+    sans-serif;
+  /* Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* LAYOUT AND COMPONENTS */
+.page-layout {
+  min-block-size: 100vb; /* fallback if browser doesn't support svb */
+  min-block-size: 100svb;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  align-items: center;
+  gap: 1.5rem;
+  background-color: var(--light-grayish-blue);
+  padding: 1.5rem;
+}
+
+.article-preview {
+  inline-size: min(100%, 25rem);
+  background-color: var(--white);
+  border-radius: 0.5rem;
+
+  @media (width >= 49rem) {
+    inline-size: 45.62rem;
+  }
+}
+
+.article-wrapper {
+  /* layout mobile view */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.3rem;
+
+  /* layout tablet and desktop view */
+  @media (width >= 49rem) {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 2.5rem;
+  }
+}
+
+.article-image {
+  inline-size: 100%;
+  block-size: auto;
+  max-block-size: 12.5rem;
+  object-fit: cover;
+  border-start-start-radius: 0.5rem;
+  border-start-end-radius: 0.5rem;
+
+  @media (width >= 49rem) {
+    inline-size: 17.81rem;
+    block-size: auto;
+    max-block-size: none;
+    border-start-end-radius: 0;
+    border-end-start-radius: 0.5rem;
+  }
+}
+
+.article-content {
+  padding-inline: 2rem;
+  padding-block-end: 1rem;
+
+  @media (width >= 49rem) {
+    padding-block: 2rem;
+    padding-inline-start: 0;
+    padding-inline-end: 2.5rem;
+  }
+}
+
+.article-title {
+  font-size: 0.514rem;
+  margin-block-end: 0.7rem;
+  color: var(--very-dark-grayish-blue);
+
+  @media (width >= 49rem) {
+    font-size: 0.6425rem;
+  }
+}
+
+.content {
+  color: var(--very-dark-grayish-blue);
+  opacity: 0.85;
+  padding-block-end: 2rem;
+
+  @media (width >= 49rem) {
+    padding-block-end: 1rem;
+  }
+}
+
+.article-footer {
+  anchor-name: article-footer;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-inline: -2rem;
+  margin-block: -1rem;
+  padding-inline: 2rem;
+  padding-block: 1rem;
+}
+
+.article-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.avatar {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  border-radius: 50%;
+}
+
+.share-button {
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 50%;
+  inline-size: 2rem;
+  block-size: 2rem;
+  padding: 0;
+}
+
+/* footer */
+/* attributions */
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+
+  a {
+    color: var(--link-attribution);
+  }
+}

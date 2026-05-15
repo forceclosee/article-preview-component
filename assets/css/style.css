@@ -109,7 +109,7 @@ h6 {
   background-color: var(--white);
   border-radius: 0.5rem;
 
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     inline-size: 45.62rem;
   }
 }
@@ -122,7 +122,7 @@ h6 {
   gap: 2.3rem;
 
   /* layout tablet and desktop view */
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     flex-direction: row;
     align-items: stretch;
     gap: 2.5rem;
@@ -137,7 +137,7 @@ h6 {
   border-start-start-radius: 0.5rem;
   border-start-end-radius: 0.5rem;
 
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     inline-size: 17.81rem;
     block-size: auto;
     max-block-size: none;
@@ -150,7 +150,7 @@ h6 {
   padding-inline: 2rem;
   padding-block-end: 1rem;
 
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     padding-block: 2rem;
     padding-inline-start: 0;
     padding-inline-end: 2.5rem;
@@ -162,7 +162,7 @@ h6 {
   margin-block-end: 0.7rem;
   color: var(--very-dark-grayish-blue);
 
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     font-size: 0.6425rem;
   }
 }
@@ -172,13 +172,12 @@ h6 {
   opacity: 0.85;
   padding-block-end: 2rem;
 
-  @media (width >= 49rem) {
+  @media (width >= 54rem) {
     padding-block-end: 1rem;
   }
 }
 
 .article-footer {
-  anchor-name: article-footer;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -197,13 +196,16 @@ h6 {
 }
 
 .avatar {
+  flex-shrink: 0;
   inline-size: 2.5rem;
   block-size: 2.5rem;
   border-radius: 50%;
 }
 
 .share-button {
+  anchor-name: --share-button;
   z-index: 3;
+  flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,13 +216,86 @@ h6 {
   padding: 0;
 }
 
+.share-button img {
+  inline-size: 1rem;
+  block-size: auto;
+  padding-block-end: 0.2rem;
+}
+
+.tooltip-share {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+  inset: 0;
+  background-color: var(--very-dark-grayish-blue);
+  color: var(--white);
+  padding-inline-start: 2rem;
+  padding-inline-end: 4.5rem;
+  padding-block: 1rem;
+  border-end-start-radius: 0.5rem;
+  border-end-end-radius: 0.5rem;
+
+  @media (width >= 54rem) {
+    position-anchor: --share-button;
+    flex-wrap: nowrap;
+    inset: auto; /* Reset inset: 0 from mobile view */
+    inset-block-end: calc(
+      anchor(start) + 1rem
+    ); /* position the tooltip above share button */
+    inset-inline-start: anchor(
+      center
+    ); /* position the tooltip at the center of the share button */
+    translate: -50% 0; /* Adjust the tooltip position to be centered horizontally */
+    position-visibility: always;
+    inline-size: max-content;
+    padding-inline-end: 2rem;
+    border-radius: 0.5rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: auto;
+      border-width: 0.5rem;
+      border-style: solid;
+      border-color: var(--very-dark-grayish-blue) transparent transparent
+        transparent; /* Create an arrow pointing downwards */
+      inset-block-end: -1rem; /* position the arrow below the tooltip */
+      inset-inline-start: 50%; /* position the arrow at the center of the tooltip */
+      translate: -50% 0; /* Adjust the arrow position to be centered horizontally */
+    }
+  }
+}
+
+.tooltip-share p {
+  opacity: 60%;
+  text-transform: uppercase;
+  letter-spacing: 0.33rem;
+  font-weight: 300;
+  font-size: 0.8rem;
+}
+
+.tooltip-share img {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
 /* footer */
 /* attributions */
 .attribution {
   font-size: 0.6875rem;
   text-align: center;
+  margin-block-end: -1rem;
 
   a {
     color: var(--link-attribution);
   }
+}
+
+/* UTILITY CLASSES */
+
+[aria-hidden="true"] {
+  display: none;
 }

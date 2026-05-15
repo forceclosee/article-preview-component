@@ -65,10 +65,22 @@
                 <p class="publish-date"><time datetime="2020-06-28">28 Jun 2020</time></p>
               </div>
             </div>
-            <button class="share-button" aria-label="Share options">
+            <button class="share-button" aria-label="Share options" aria-describedby="share-tooltip">
               <img src="/assets/img/icon-share.svg" alt="" width="15" height="13">
             </button>
-
+            <div aria-hidden="true" class="tooltip-share" id="share-tooltip" role="tooltip">
+              <p>share</p>
+              <!-- cek lagi link untuk buat new postnya -->
+              <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_LIVE_SITE_URL" target="_blank" rel="noreferrer noopener" aria-label="Share on Facebook">
+                <img src="/assets/img/facebook-f-brands-solid-full.svg" alt="" width="640" height="640">
+              </a>
+              <a href="https://twitter.com/intent/tweet?url=YOUR_LIVE_SITE_URL" target="_blank" rel="noreferrer noopener" aria-label="Share on X (Twitter)">
+                <img src="/assets/img/x-twitter-brands-solid-full.svg" alt="" width="640" height="640">
+              </a>
+              <a href="https://pinterest.com/pin/create/button/?url=YOUR_LIVE_SITE_URL" target="_blank" rel="noreferrer noopener" aria-label="Share on Pinterest">
+                <img src="/assets/img/pinterest-p-brands-solid-full.svg" alt="" width="640" height="640">
+              </a>
+            </div>
           </footer>
         </div>
       </article>

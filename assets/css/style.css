@@ -226,6 +226,16 @@ h6 {
   border-radius: 50%;
 }
 
+.article-meta .author-name {
+  font-weight: 700;
+  color: var(--very-dark-grayish-blue);
+}
+
+/* date published */
+.article-meta .publish-date {
+  color: var(--grayish-blue);
+}
+
 /* share button */
 .share-button {
   anchor-name: --share-button;

@@ -26,17 +26,24 @@
   line-height: calc(1em + 0.5rem);
 }
 
-/* Reserve scrollbar area */
 html {
+  /* Reserve scrollbar area */
   scrollbar-gutter: stable;
+  /* Enable smooth scrolling for anchor links */
+  scroll-behavior: smooth;
+  /* Enable keywords animations */
+  interpolate-size: allow-keywords;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    /* Enable smooth scrolling for anchor links */
-    scroll-behavior: smooth;
-    /* Enable keywords animations */
-    interpolate-size: allow-keywords;
+/* Applies styles when Reduced Motion is enabled */
+@media screen and (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -92,6 +99,7 @@ h6 {
 }
 
 /* LAYOUT AND COMPONENTS */
+/* layout */
 .page-layout {
   min-block-size: 100vb; /* fallback if browser doesn't support svb */
   min-block-size: 100svb;
@@ -104,6 +112,7 @@ h6 {
   padding: 1.5rem;
 }
 
+/* preview card */
 .article-preview {
   inline-size: min(100%, 25rem);
   background-color: var(--white);
@@ -129,6 +138,7 @@ h6 {
   }
 }
 
+/* image */
 .article-image {
   inline-size: 100%;
   block-size: auto;
@@ -146,6 +156,7 @@ h6 {
   }
 }
 
+/* article (title, content, and footer) */
 .article-content {
   padding-inline: 2rem;
   padding-block-end: 1rem;
@@ -157,6 +168,7 @@ h6 {
   }
 }
 
+/* article title */
 .article-title {
   font-size: 0.514rem;
   margin-block-end: 0.7rem;
@@ -167,6 +179,7 @@ h6 {
   }
 }
 
+/* article-content */
 .content {
   color: var(--very-dark-grayish-blue);
   opacity: 0.85;
@@ -177,6 +190,7 @@ h6 {
   }
 }
 
+/* article footer (meta and share button) */
 .article-footer {
   position: relative;
   display: flex;
@@ -189,12 +203,14 @@ h6 {
   padding-block: 1rem;
 }
 
+/* meta (author profile info) */
 .article-meta {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
 
+/* author image */
 .avatar {
   flex-shrink: 0;
   inline-size: 2.5rem;
@@ -202,6 +218,7 @@ h6 {
   border-radius: 50%;
 }
 
+/* share button */
 .share-button {
   anchor-name: --share-button;
   z-index: 3;
@@ -214,15 +231,23 @@ h6 {
   inline-size: 2rem;
   block-size: 2rem;
   padding: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease-out;
 }
 
-.share-button img {
+.share-button svg {
   inline-size: 1rem;
   block-size: auto;
-  padding-block-end: 0.2rem;
+  fill: var(--desaturated-dark-blue);
 }
 
-.tooltip-share {
+/* animate button on user click */
+.share-button:active {
+  transform: scale(0.7);
+}
+
+/* tooltip (show the social media share options when users click share button) */
+.share-tooltip {
   position: absolute;
   z-index: 2;
   display: flex;
@@ -237,23 +262,52 @@ h6 {
   padding-block: 1rem;
   border-end-start-radius: 0.5rem;
   border-end-end-radius: 0.5rem;
+  opacity: 1;
+  transition:
+    opacity 0.4s ease-in-out,
+    display 0.4s ease-in-out allow-discrete;
 
+  /* set the visual property before transition (when opening) */
+  @starting-style {
+    opacity: 0;
+  }
+
+  /* change tooltip on desktop view */
   @media (width >= 54rem) {
     position-anchor: --share-button;
     flex-wrap: nowrap;
-    inset: auto; /* Reset inset: 0 from mobile view */
-    inset-block-end: calc(
-      anchor(start) + 1rem
-    ); /* position the tooltip above share button */
-    inset-inline-start: anchor(
-      center
-    ); /* position the tooltip at the center of the share button */
-    translate: -50% 0; /* Adjust the tooltip position to be centered horizontally */
+    /* Reset inset: 0 from mobile view */
+    inset: auto;
+    /* position the tooltip above share button */
+    inset-block-end: calc(anchor(start) + 1rem);
+    /* position the tooltip at the center of the share button */
+    inset-inline-start: anchor(center);
+    /* Adjust the tooltip position to be centered horizontally */
+    translate: -50% 0;
     position-visibility: always;
     inline-size: max-content;
+    block-size: auto;
     padding-inline-end: 2rem;
     border-radius: 0.5rem;
+    transition:
+      opacity 0.3s ease-in-out,
+      display 0.3s ease-in-out allow-discrete,
+      translate 0.3s ease-in-out,
+      scale 0.3s ease-in-out;
 
+    /* set the visual property on hidden state (when closing) for desktop view */
+    &[aria-hidden="true"] {
+      translate: -50% 1rem;
+      scale: 0.9;
+    }
+
+    /* set the visual property before transition (when opening) for desktop view */
+    @starting-style {
+      translate: -50% 1rem;
+      scale: 0.9;
+    }
+
+    /* add little triangle on the bottom of tooltip */
     &::after {
       content: "";
       position: absolute;
@@ -269,7 +323,7 @@ h6 {
   }
 }
 
-.tooltip-share p {
+.share-tooltip p {
   opacity: 60%;
   text-transform: uppercase;
   letter-spacing: 0.33rem;
@@ -277,9 +331,15 @@ h6 {
   font-size: 0.8rem;
 }
 
-.tooltip-share img {
+/* social media icon on the tooltip */
+.share-tooltip img {
   inline-size: 1.5rem;
   block-size: 1.5rem;
+}
+
+/* animate social media icon on user click */
+.share-tooltip img:active {
+  transform: scale(0.7);
 }
 
 /* footer */
@@ -298,4 +358,13 @@ h6 {
 
 [aria-hidden="true"] {
   display: none;
+  opacity: 0;
+}
+
+.click {
+  background-color: var(--desaturated-dark-blue);
+}
+
+.click svg {
+  fill: var(--white);
 }

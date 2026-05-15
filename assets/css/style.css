@@ -27,8 +27,6 @@
 }
 
 html {
-  /* Reserve scrollbar area */
-  scrollbar-gutter: stable;
   /* Enable smooth scrolling for anchor links */
   scroll-behavior: smooth;
   /* Enable keywords animations */

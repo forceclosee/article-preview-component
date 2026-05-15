@@ -136,6 +136,16 @@ h6 {
   }
 }
 
+/* set transition for background elements when inert */
+.article-image,
+.article-title,
+.content,
+.article-meta {
+  transition:
+    opacity 0.4s ease-in-out,
+    filter 0.4s ease-in-out;
+}
+
 /* image */
 .article-image {
   inline-size: 100%;
@@ -180,7 +190,7 @@ h6 {
 /* article-content */
 .content {
   color: var(--very-dark-grayish-blue);
-  opacity: 0.85;
+  color: var(--desaturated-dark-blue);
   padding-block-end: 2rem;
 
   @media (width >= 54rem) {
@@ -209,7 +219,7 @@ h6 {
 }
 
 /* author image */
-.avatar {
+.article-meta .avatar {
   flex-shrink: 0;
   inline-size: 2.5rem;
   block-size: 2.5rem;
@@ -288,10 +298,10 @@ h6 {
     padding-inline-end: 2rem;
     border-radius: 0.5rem;
     transition:
-      opacity 0.3s ease-in-out,
-      display 0.3s ease-in-out allow-discrete,
-      translate 0.3s ease-in-out,
-      scale 0.3s ease-in-out;
+      opacity 0.4s ease-in-out,
+      display 0.4s ease-in-out allow-discrete,
+      translate 0.4s ease-in-out,
+      scale 0.4s ease-in-out;
 
     /* set the visual property on hidden state (when closing) for desktop view */
     &[aria-hidden="true"] {
@@ -359,10 +369,17 @@ h6 {
   opacity: 0;
 }
 
-.click {
+.bgcolor-fill {
   background-color: var(--desaturated-dark-blue);
 }
 
-.click svg {
+.bgcolor-fill svg {
   fill: var(--white);
+}
+
+[inert] {
+  user-select: none;
+  pointer-events: none;
+  opacity: 0.8;
+  filter: blur(4px);
 }

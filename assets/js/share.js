@@ -7,21 +7,17 @@ const elementsToInert = document.querySelectorAll(
 // when user click share button
 shareButton.addEventListener("click", function (e) {
   const isTooltipHidden = tooltip.getAttribute("aria-hidden") === "true";
-  // show the tooltip
+
+  // toggle the tooltip state
   tooltip.setAttribute("aria-hidden", !isTooltipHidden);
-  // prevent event bubbling (avoid trigger double event listener and activate the document event listener that will cause the tooltip won't show)
+  // prevent the global document event listener (which closes the tooltip) from triggering simultaneously
   e.stopPropagation();
 
-  // change button background color and icon fill
+  // toggle button background color and icon fill based on the tooltip state
   shareButton.classList.toggle("bgcolor-fill");
 
-  // if tooltip is hidden add inert attribute to all elements
-  if (isTooltipHidden) {
-    elementsToInert.forEach((el) => el.setAttribute("inert", ""));
-    // if tooltip is not hidden remove inert attribute from all elements
-  } else {
-    elementsToInert.forEach((el) => el.removeAttribute("inert"));
-  }
+  // toggle inert attribute on all elements based on the tooltip state
+  elementsToInert.forEach((el) => el.toggleAttribute("inert", isTooltipHidden));
 });
 
 // when user click anywhere on the page

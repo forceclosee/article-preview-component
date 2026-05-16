@@ -1,6 +1,6 @@
 # Frontend Mentor - Article preview component solution
 
-This is a solution to the [Article preview component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/article-preview-component-dYBN_pYFT). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Article preview component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/article-preview-component-dYBN_pYFT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -15,9 +15,6 @@ This is a solution to the [Article preview component challenge on Frontend Mento
   - [Useful resources](#useful-resources)
   - [AI Collaboration](#ai-collaboration)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
-
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -25,25 +22,20 @@ This is a solution to the [Article preview component challenge on Frontend Mento
 
 Users should be able to:
 
-- View the optimal layout for the component depending on their device's screen size
-- See the social media share links when they click the share icon
+- View the optimal layout for the component depending on their device's screen size.
+- See the social media share links on a tooltip when they click the share icon.
+- Close the tooltip seamlessly by clicking anywhere outside the share button.
+- Experience smooth animations and transitions when the tooltip are opens and closes.
+- Interact with a fully accessible component that utilizes `aria-hidden` and `inert` attributes for screen readers.
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![Screenshot Desktop View](./assets/img/screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [solution URL](https://github.com/forceclosee/article-preview-component)
+- Live Site URL: [live site URL](https://your-live-site-url.com) <!-- ganti link -->
 
 ## My process
 
@@ -53,70 +45,84 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
+- Modern CSS Features (Anchor Positioning, `@starting-style`, CSS Nesting)
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Vanilla JavaScript
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+In this project, I learned and implemented several modern CSS features and useful JavaScript techniques:
 
-To see how you can add code snippets, see below:
+- **CSS Anchor Positioning**
+  I used CSS Anchor Positioning to dynamically position the tooltip relative to the share button on desktop screens. This makes positioning much easier without relying on complex calculations with absolute positioning.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+.share-button {
+  anchor-name: --share-button;
+}
+
+@media (width >= 54rem) {
+  .share-tooltip {
+    position-anchor: --share-button;
+    inset-block-end: calc(anchor(start) + 1rem);
+    inset-inline-start: anchor(center);
+    translate: -50% 0;
+  }
 }
 ```
+
+- **Discrete Animations with `@starting-style`**
+  Animating properties like `display` used to be very difficult with pure CSS. Here, I learned to use `@starting-style` and the `allow-discrete` keyword in the `transition` property to create a smooth fade-in/fade-out animation even when the element changes from / to `display: none`.
+
+```css
+.share-tooltip {
+  transition:
+    opacity 0.4s ease-in-out,
+    display 0.4s ease-in-out allow-discrete;
+
+  @starting-style {
+    opacity: 0;
+  }
+}
+```
+
+- **Accessibility (`inert` & `aria-hidden`) and JS Event Management**
+  To make the component more accessible to screen readers and keyboard users, I manipulated the `aria-hidden` attribute for the tooltip and added the `inert` attribute to background elements when the tooltip is open.
+
+I also learned about event bubbling in JavaScript and used `e.stopPropagation()` when clicking the share button, preventing the global document event listener (which closes the tooltip) from triggering simultaneously.
+
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+// prevent event bubbling
+e.stopPropagation();
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+In future projects, I want to continue focusing on:
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+- **Advanced CSS Feature Fallbacks:** While CSS Anchor Positioning and `@starting-style` are incredibly powerful and make positioning and animating easier, browser support is still evolving. I plan to learn more about writing robust fallbacks using CSS feature queries (`@supports`) to ensure a consistent experience across all older browsers.
+- **Accessibility (a11y) Best Practices:** Manually managing attributes like `inert` and `aria-hidden` in JavaScript was a great learning experience. I want to dive deeper into WCAG (Web Content Accessibility Guidelines) to ensure all my future interactive components are fully inclusive, especially regarding keyboard focus management.
+- **State Management:** I'd like to explore translating this vanilla JavaScript DOM manipulation logic into a modern framework-based approach (like React, Vue, or Svelte) in future projects to see how declarative state management can simplify complex UI updates.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [Google Fonts](https://fonts.google.com/) - Provided the Overpass font family used throughout the project. A great free resource for web-safe fonts.
+- [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
+- [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
+- [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjlophiddqccjgplachon0304v) - Chrome extension that allowed me to overlay the design mockup directly on my live page for pixel-perfect accuracy.
+- [FontAwesome](https://fontawesome.com/) - A great library used for adding scalable vector icons easily throughout the project.
 
 ### AI Collaboration
 
-Describe how you used AI tools (if any) during this project. This helps demonstrate your ability to work effectively with AI assistants.
+In this project, I collaborated with an AI coding assistant (Gemini) to help refine and structure my documentation:
 
-- What tools did you use (e.g., ChatGPT, Claude, GitHub Copilot)?
-- How did you use them (e.g., debugging, generating boilerplate, brainstorming solutions)?
-- What worked well? What didn't?
+- **Documentation Formatting:** I used AI to help articulate my technical learnings, specifically around explaining modern CSS features like Anchor Positioning and `@starting-style` clearly.
+- **Refining Phrasing:** The AI helped me refine the wording in the README file, ensuring that all technical concepts were communicated clearly and professionally.
 
-**Note: Delete this note and the content above if you didn't use AI, or replace with your own experience.**
+Overall, this collaborative process proved to be highly effective. It significantly reduced the time I spent writing and formatting the documentation without compromising on quality or clarity. Furthermore, the process of explaining my technical decisions to the AI served as a valuable exercise, allowing me to think more critically and reflect deeply on the code I had just written.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- GitHub - [Force Close](https://github.com/forceclosee)
+- Frontend Mentor - [@forceclosee](https://www.frontendmentor.io/profile/forceclosee)
+- X - [@forceclosee](https://x.com/forceclosee)

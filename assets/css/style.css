@@ -140,7 +140,8 @@ h6 {
 .article-image,
 .article-title,
 .content,
-.article-meta {
+.article-meta,
+.attribution {
   transition:
     opacity 0.4s ease-in-out,
     filter 0.4s ease-in-out;
@@ -226,6 +227,7 @@ h6 {
   border-radius: 50%;
 }
 
+/* author name */
 .article-meta .author-name {
   font-weight: 700;
   color: var(--very-dark-grayish-blue);

@@ -1,7 +1,7 @@
 const shareButton = document.querySelector(".share-button");
 const tooltip = document.querySelector("#share-tooltip");
 const elementsToInert = document.querySelectorAll(
-  ".article-image, .article-title, .content, .article-meta",
+  ".article-image, .article-title, .content, .article-meta, .attribution",
 );
 
 // when user click share button

@@ -255,6 +255,18 @@ h6 {
   transition:
     transform 0.15s ease-out,
     background-color 0.15s ease-in-out;
+
+  &:hover {
+    background-color: var(--desaturated-dark-blue);
+  }
+
+  &:hover svg {
+    fill: var(--white);
+  }
+  /* animate button on user click */
+  &:active {
+    transform: scale(0.7);
+  }
 }
 
 .share-button svg {
@@ -262,11 +274,6 @@ h6 {
   block-size: auto;
   fill: var(--desaturated-dark-blue);
   transition: fill 0.15s ease-in-out;
-}
-
-/* animate button on user click */
-.share-button:active {
-  transform: scale(0.7);
 }
 
 /* tooltip (show the social media share options when users click share button) */
@@ -293,6 +300,9 @@ h6 {
   /* set the visual property before transition (when opening) */
   @starting-style {
     opacity: 0;
+
+    @media (width >= 54rem) {
+    }
   }
 
   /* change tooltip on desktop view */
@@ -327,7 +337,7 @@ h6 {
     /* set the visual property before transition (when opening) for desktop view */
     @starting-style {
       translate: -50% 1rem;
-      scale: 0.9;
+      scale: 0.7;
     }
 
     /* add little triangle on the bottom of tooltip */
@@ -354,15 +364,23 @@ h6 {
   font-size: 0.8rem;
 }
 
-/* social media icon on the tooltip */
-.share-tooltip img {
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
+/* styling the list inside tooltip */
+.social-links {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  gap: 0.8rem;
 }
 
-/* animate social media icon on user click */
-.share-tooltip img:active {
-  transform: scale(0.7);
+/* social media icon on the tooltip */
+.social-links img {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+
+  /* animate social media icon on user click */
+  &:hover {
+    transform: scale(0.7);
+  }
 }
 
 /* footer */

@@ -1,4 +1,4 @@
-# Frontend Mentor - Article preview component solution
+# Article Preview using CSS Anchor, @starting-style, and Vanilla JS
 
 This is a solution to the [Article preview component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/article-preview-component-dYBN_pYFT). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
@@ -35,7 +35,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [solution URL](https://github.com/forceclosee/article-preview-component)
-- Live Site URL: [live site URL](https://your-live-site-url.com) <!-- ganti link -->
+- Live Site URL: [live site URL](https://article-preview-component-forceclose.vercel.app/)
 
 ## My process
 
@@ -86,10 +86,11 @@ In this project, I learned and implemented several modern CSS features and usefu
 }
 ```
 
-- **Accessibility (`inert` & `aria-hidden`) and JS Event Management**
+- **Accessibility (`inert` & `aria-hidden`)**
   To make the component more accessible to screen readers and keyboard users, I manipulated the `aria-hidden` attribute for the tooltip and added the `inert` attribute to background elements when the tooltip is open.
 
-I also learned about event bubbling in JavaScript and used `e.stopPropagation()` when clicking the share button, preventing the global document event listener (which closes the tooltip) from triggering simultaneously.
+- **JS Event Management**
+  To keep the tooltip open when clicked, I learned to handle JavaScript event bubbling by using `e.stopPropagation()` on the share button, stopping it from triggering the document-wide close event.
 
 ```js
 // prevent event bubbling
@@ -106,11 +107,15 @@ In future projects, I want to continue focusing on:
 
 ### Useful resources
 
-- [Google Fonts](https://fonts.google.com/) - Provided the Overpass font family used throughout the project. A great free resource for web-safe fonts.
+- [Google Fonts](https://fonts.google.com/) - Provided the Manrope font family used throughout the project. A great free resource for web-safe fonts.
 - [TinyPNG](https://tinypng.com/) - Helped me compress and optimize the images in the project without losing quality, making the page load faster.
 - [Cloudinary](https://cloudinary.com/) - Used to host the Open Graph and Twitter card images for social media sharing.
 - [Perfect Pixel](https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjlophiddqccjgplachon0304v) - Chrome extension that allowed me to overlay the design mockup directly on my live page for pixel-perfect accuracy.
-- [FontAwesome](https://fontawesome.com/) - A great library used for adding scalable vector icons easily throughout the project.
+- [FontAwesome](https://fontawesome.com/) - Provided the Facebook, X, and Pinterest icons used in the project.
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) - Crucial documentation that helped me understand how to manage accessibility with `inert` and `aria-*` attributes, as well as how to stop event bubbling.
+- Josh W. Comeau's [Custom CSS Reset](https://www.joshwcomeau.com/css/custom-css-reset/) - I used this as a foundation for my CSS reset to ensure a consistent and sensible baseline across browsers.
+- [Kevin Powell](https://www.youtube.com/@KevinPowell)'s YouTube Channel - His excellent tutorials on [CSS Anchor Positioning](https://www.youtube.com/watch?v=DNXEORSk4GU) and [@starting-style](https://www.youtube.com/watch?v=vmDEHAzj2XE) were instrumental in helping me build the modern tooltip component.
+- CSS-Tricks: [How to Make a Triangle](https://css-tricks.com/books/greatest-css-tricks/how-to-make-a-triangle/) - A fantastic guide that showed me how to easily create the little triangle pointer on the desktop tooltip using only CSS borders.
 
 ### AI Collaboration
 

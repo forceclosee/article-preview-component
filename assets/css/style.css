@@ -190,7 +190,6 @@ h6 {
 
 /* article-content */
 .content {
-  color: var(--very-dark-grayish-blue);
   color: var(--desaturated-dark-blue);
   padding-block-end: 2rem;
 
@@ -300,9 +299,6 @@ h6 {
   /* set the visual property before transition (when opening) */
   @starting-style {
     opacity: 0;
-
-    @media (width >= 54rem) {
-    }
   }
 
   /* change tooltip on desktop view */
@@ -365,7 +361,7 @@ h6 {
 }
 
 /* styling the list inside tooltip */
-.social-links {
+.social-links ul {
   display: flex;
   list-style: none;
   padding: 0;
